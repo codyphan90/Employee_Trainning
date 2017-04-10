@@ -20,6 +20,12 @@ public class EmployeeBean {
 		List<NickEmployee> employees = entityManager.createQuery(str, NickEmployee.class).getResultList();
 		return employees;
 	}
+	public List<NickEmployee> filteremployees(){
+		String str = "SELECT n FROM NickEmployee n";
+		
+		List<NickEmployee> employees = entityManager.createQuery(str, NickEmployee.class).getResultList();
+		return employees;
+	}
 	
 	
 	public EmployeeBean() {
