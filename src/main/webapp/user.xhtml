@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:form>
+	<p:panel id="panel" header="New User">
+
+		<p:messages id="msgs" />
+
+		<h:panelGrid columns="3" cellpadding="5">
+			<p:outputLabel for="username" value="Username" />
+			<p:inputText id="username" value="#{userManageBean.name}"
+				required="true" label="Username">
+				<f:validateLength minimum="2" />
+			</p:inputText>
+			<p:message for="username" display="icon" />
+
+			<p:outputLabel for="surname" value="Surname" />
+			<p:inputText id="surname" value="#{userManageBean.surname}"
+				label="Surname" required="true">
+				<f:validateLength minimum="2" />
+				<p:ajax update="msgSurname" event="keyup" />
+			</p:inputText>
+			<p:message for="surname" id="msgSurname" display="icon" />
+
+
+
+		</h:panelGrid>
+
+		<p:commandButton value="Login" update="panel"
+			actionListener="#{userManageBean.save}" icon="ui-icon-check" />
+		<p:commandButton value="Reset" update="panel"
+			actionListener="#{userManageBean.reset}" icon="ui-icon-check" />
+
+	</p:panel>
+</h:form>
+
+<h:form>
+	<h:panelGrid columns="2">
+                Student ID to Delete: <h:inputText
+			value="#{userManageBean.id}" />
+		<h:commandButton value="delete student"
+			action="#{userManageBean.deleteUser}" />
+	</h:panelGrid>
+</h:form>
+<br></br>
+<br></br>
+
+<h:form>
+	<h:panelGrid columns="2">
+                Student ID: <h:inputText value="#{userManageBean.id}" />
+		<br></br>
+		<h:commandButton value="Show student" action="#{userManageBean.getbyid}" />
+		<br></br>
+		<h:inputText value="#{userManageBean.name}" />
+		<br></br>
+		<h:inputText value="#{userManageBean.surname}" />
+		<br></br>
+		<h:commandButton value="Update" action="#{userManageBean.updateUser}" />
+	</h:panelGrid>
+</h:form>
+</html>
